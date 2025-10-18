@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let currentPlayer = 'X';
   let gameOver = false;
 
+  //checks for winner
   function checkWinner(player) {
     const board = squares.map(sq => sq.textContent);
     const winPatterns = [
@@ -19,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     );
   }
 
+  //function to reset game 
   function resetGame() {
     squares.forEach(sq => {
       sq.textContent = '';
@@ -45,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     square.addEventListener('click', () => {
-      if (gameOver || square.textContent !== '') return;
+      if (gameOver || square.textContent !== '') return;//disallow cheating
 
       square.textContent = currentPlayer;
       square.classList.add(currentPlayer);
@@ -61,6 +63,6 @@ window.addEventListener('DOMContentLoaded', () => {
       currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     });
   });
-
+  //button to restart
   newGameBtn.addEventListener('click', resetGame);
 });
