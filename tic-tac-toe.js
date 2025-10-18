@@ -13,5 +13,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     });
+    square.addEventListener('mouseenter', () => {
+      if (square.textContent === '') square.classList.add('hover');
+    });
+
+    square.addEventListener('mouseleave', () => {
+      square.classList.remove('hover');
+    });
   });
 });
