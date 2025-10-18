@@ -1,6 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
   const squares = Array.from(document.querySelectorAll('#board div'));
   const status = document.getElementById('status');
+  const newGameBtn = document.querySelector('.controls .btn');
+  const initialStatusText = status.textContent;
+
   let currentPlayer = 'X';
   let gameOver = false;
 
@@ -14,6 +17,20 @@ window.addEventListener('DOMContentLoaded', () => {
     return winPatterns.some(pattern =>
       pattern.every(index => board[index] === player)
     );
+  }
+
+  function resetGame() {
+    squares.forEach(sq => {
+      sq.textContent = '';
+      sq.classList.remove('X', 'O', 'hover');
+      sq.style.background = '';
+      sq.style.color = '';
+      sq.style.cursor = '';
+    });
+    status.textContent = initialStatusText;
+    status.classList.remove('you-won');
+    currentPlayer = 'X';
+    gameOver = false;
   }
 
   squares.forEach(square => {
@@ -44,4 +61,6 @@ window.addEventListener('DOMContentLoaded', () => {
       currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     });
   });
+
+  newGameBtn.addEventListener('click', resetGame);
 });
